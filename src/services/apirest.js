@@ -1,0 +1,1 @@
+export const apiurl="https://api.solodata.es/";
