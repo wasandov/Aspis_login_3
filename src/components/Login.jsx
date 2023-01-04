@@ -17,7 +17,7 @@ class Login extends React.Component{
 
     state={
         form:{
-            "usuario":"",               //se debe de tomar tal y como esta en la BD CAMI******
+            "email":"",               //se debe de tomar tal y como esta en la BD CAMI******
             "password":""               //se debe de tomar tal y como esta en la BD CAMI******
         },
         //error:false,                  //Error de pruebas, unicamente para simular error
@@ -40,27 +40,29 @@ class Login extends React.Component{
     }
 
     manejadorBoton=()=>{
-        //console.log("Enviado")
-        let url = apiurl + "auth";
+        console.log("Enviado")
+        let url = apiurl + "/auth/login";
         axios.post(url, this.state.form)
         
         .then(response =>{
+            console.log("respuesta then");
             console.log(response);
             if(response.data.status === "ok"){
                 localStorage.setItem("token", response.data.result.token);
                 this.props.history.push("/Dashboard");              
             }
-            else{
+            /*else{
                this.setState({
                 error: true,
                 errorMsg: response.data.result.error_msg
                 }) 
-            }
+            }*/
         }).catch(error => {
+            console.log("error");
             console.log(error);
             this.setState({
                 error: true,
-                errorMsg: "Error al conectar con el API"
+                errorMsg: error.response.data.message
             })
         })
 
@@ -73,6 +75,9 @@ class Login extends React.Component{
 
                 <div className="wrapper fadeInDown">
                 <div id="formContent">
+                    <br></br>
+                    <h3 className="panel-title">Registro Para Manejo de Horas </h3>
+                    <br></br>
                     <div className="fadeIn first">
                         <br></br>
                     <img src={logo} width="100px" id="icon" alt="Icono Aspis" />
@@ -80,11 +85,17 @@ class Login extends React.Component{
                     </div>
 
                     <form onSubmit={this.manejadorSubmit}>
-                        <input type="text" id="Usuario" className="fadeIn second" name="usuario" placeholder="Usuario" onChange={this.manejadorChange}/>
+                        <input type="text" id="email" className="fadeIn second" name="email" placeholder="Usuario" onChange={this.manejadorChange}/>
                         <input type="Password" id="password" className="fadeIn third" name="password" placeholder="Password" onChange={this.manejadorChange}/>
                         <input type="submit" className="fadeIn fourth" value="Ingresar" onClick={this.manejadorBoton}/>
                     </form>
+                    <div id="formFooter">
+                            <a className="underlineHover" href="#" onClick={this.manejadorBotonNewUSer}> Usuario Nuevo </a>
+                    </div>
 
+                    <div id="formFooter">
+                        <a className="underlineHover" href="#">Olvido su Usuario y/o Password</a>
+                    </div>
                     {this.state.error === true &&
                         <div className="alert alert-danger" role="alert">
                             {this.state.errorMsg}

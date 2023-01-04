@@ -1,1 +1,1 @@
-export const apiurl="https://api.solodata.es/";
+export const apiurl="http://localhost:4000";
