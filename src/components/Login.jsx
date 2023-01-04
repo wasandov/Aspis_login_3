@@ -65,9 +65,12 @@ class Login extends React.Component{
                 errorMsg: error.response.data.message
             })
         })
-
-
     }
+
+    manejadorBotonNewUSer=()=>{
+        console.log("Enviado Nuevo usuario")
+        this.props.history.push("/Nuevo");  
+    }  
 
     render(){
         return(
