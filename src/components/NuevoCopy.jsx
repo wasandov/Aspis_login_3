@@ -14,7 +14,8 @@ class NuevoCopy extends React.Component {
       email: "",
       password: "",
     },
-    MsjCreacionUsuario: false, //Para pruebas, si sobra se puede eliminar
+    error: "",
+    errorMsg: "Error de pruebas 123456",
   };
 
   //Manejador, para que hasta que no se ingresen los datos, no se recargue la pagina
@@ -35,14 +36,34 @@ class NuevoCopy extends React.Component {
   UsuarioNuevo = () => {
     console.log(this.state.form);
     let url = apiurl + "/auth/Register"; //Tener en cuenta como lo tiene estructurado CAMI
-    axios.post(url, this.state.form).then((response) => {
-      console.log(response);
-      if (response.data.statusCode === 201) {
-        console.log("Usuario creado");
-      }
-      //localStorage.setItem(response.data.result.token);
-      //errorMsg: response.data.message
-    });
+    axios
+      .post(url, this.state.form)
+      .then((response) => {
+        console.log(response);
+        if (response.data.statusCode === 201) {
+          console.log("Usuario creado");
+          this.setState({
+            error: "1",
+            errorMsg: "El usuario fue creado con exito",
+          });
+        }
+      })
+      .catch((error) => {
+        console.log("error de catch");
+        console.log(error);
+        this.setState({
+          error: "2",
+          errorMsg: error.response.data.message,
+        });
+
+        /*if (error.AxiosError.response.data.statusCode === 409) {
+          console.log("error de catch dentro del if");
+          this.setState({
+            error: "2",
+            errorMsg: "El email ya se habia registrado",
+          });
+        }*/
+      });
   };
 
   render() {
@@ -89,8 +110,18 @@ class NuevoCopy extends React.Component {
             onClick={this.UsuarioNuevo}
           />
           <br></br>
-          {this.state.error === true && (
+          {this.state.error === "1" && (
+            <div className="alert alert-primary" role="alert">
+              {this.state.errorMsg}
+            </div>
+          )}
+          {this.state.error === "2" && (
             <div className="alert alert-danger" role="alert">
+              {this.state.errorMsg}
+            </div>
+          )}
+          {this.state.error === "3" && (
+            <div className="alert alert-primary" role="alert">
               {this.state.errorMsg}
             </div>
           )}
