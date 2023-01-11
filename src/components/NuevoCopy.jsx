@@ -14,7 +14,7 @@ class NuevoCopy extends React.Component {
       email: "",
       password: "",
     },
-    MsjCreacionUsuario: false,
+    MsjCreacionUsuario: false, //Para pruebas, si sobra se puede eliminar
   };
 
   //Manejador, para que hasta que no se ingresen los datos, no se recargue la pagina
@@ -39,7 +39,6 @@ class NuevoCopy extends React.Component {
       console.log(response);
       if (response.data.statusCode === 201) {
         console.log("Usuario creado");
-        MsjCreacionUsuario: true;
       }
       //localStorage.setItem(response.data.result.token);
       //errorMsg: response.data.message
