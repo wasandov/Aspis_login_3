@@ -13,16 +13,11 @@ class Editar extends React.Component{
 
     state = {
         form:{
-            "nombre" : "", 
-            "direccion": "",
-            "dni" : "",
-            "correo":"",
-            "codigoPostal" :"",
-            "genero" : "",
-            "telefono" : "",
-            "fechaNacimiento" : "",
-            "token" : "",
-            "pacienteId":""
+            "name" : "", 
+            "email": "",
+            "password" : "",
+            "id":"",
+            "address" :"",
         },
         error:false,
         errorMsg:""
@@ -45,7 +40,7 @@ class Editar extends React.Component{
 
     put =()=>{
         console.log(this.state.form)
-        let url = apiurl+"pacientes";    //Tener en cuenta como lo tiene estructurado CAMI
+        let url = apiurl+"/auth/register";    //Tener en cuenta como lo tiene estructurado CAMI
         axios.put(url,this.state.form)
         .then(response =>{
             console.log(response)
@@ -53,7 +48,7 @@ class Editar extends React.Component{
     }
 
     delete =()=>{
-        let url = apiurl+"pacientes";    //Tener en cuenta como lo tiene estructurado CAMI
+        let url = apiurl+"/auth/register";    //Tener en cuenta como lo tiene estructurado CAMI
         let PacienteId=this.props.match.params.id;
         let datos = {
             "token": localStorage.getItem("token"),
@@ -69,7 +64,7 @@ class Editar extends React.Component{
 
     componentDidMount(){
         let PacienteId=this.props.match.params.id;
-        let url = apiurl + "/pacientes?id=" + PacienteId;             //Ruta donde se van a alterar los datos
+        let url = apiurl + "//auth/register?id=" + PacienteId;             //Ruta donde se van a alterar los datos
         axios.get(url)
         .then(response =>{
             this.setState({
@@ -106,7 +101,7 @@ class Editar extends React.Component{
                         <div className="col-sm-12">
                             <label className="col1"> Nombres y Apellidos </label>
                             <div className="col2">
-                                <input className="Formato" name="nombre" placeholder="Nombres y apellidos" type="text" value={form.nombre} onChange={this.manejadorChange}/>
+                                <input className="Formato" name="name" placeholder="Nombres y apellidos" type="text" value={form.nombre} onChange={this.manejadorChange}/>
                             </div>
                         </div>
                     </form>
@@ -115,7 +110,7 @@ class Editar extends React.Component{
                         <div className="col-sm-12">
                             <label className="col1"> Direccion </label>
                             <div className="col2">
-                                <input className="Formato" name="direccion" placeholder="Direccion de domicilio" type="text" value={form.direccion} onChange={this.manejadorChange}/>
+                                <input className="Formato" name="email" placeholder="Direccion de domicilio" type="text" value={form.direccion} onChange={this.manejadorChange}/>
                             </div>
                         </div>
                     </form>
@@ -125,13 +120,13 @@ class Editar extends React.Component{
                         <div className="col-md-6">
                             <label className="col-md-2 control-label"> DNI </label>
                             <div className="col-md-8">
-                                <input className="form-control" name="dni" placeholder="DNI" type="text" value={form.dni} onChange={this.manejadorChange}/>
+                                <input className="form-control" name="password" placeholder="DNI" type="text" value={form.dni} onChange={this.manejadorChange}/>
                             </div>
                         </div>
                         <div className="col-md-6">
                             <label className="col-md-2 control-label"> Telefono </label>
                             <div className="col-md-8">
-                                <input className="form-control" name="telefono" placeholder="Telefono" type="text" value={form.telefono} onChange={this.manejadorChange}/>
+                                <input className="form-control" name="address" placeholder="Telefono" type="text" value={form.telefono} onChange={this.manejadorChange}/>
                             </div>
                         </div>
                     </form>

@@ -69,7 +69,7 @@ class Login extends React.Component{
 
     manejadorBotonNewUSer=()=>{
         console.log("Enviado Nuevo usuario")
-        this.props.history.push("/Nuevo");  
+        this.props.history.push("/NuevoCopy");  
     }  
 
     render(){
@@ -88,7 +88,7 @@ class Login extends React.Component{
                     </div>
 
                     <form onSubmit={this.manejadorSubmit}>
-                        <input type="text" id="email" className="fadeIn second" name="email" placeholder="Usuario" onChange={this.manejadorChange}/>
+                        <input type="email" id="email" className="fadeIn second" name="email" placeholder="Usuario" onChange={this.manejadorChange}/>
                         <input type="Password" id="password" className="fadeIn third" name="password" placeholder="Password" onChange={this.manejadorChange}/>
                         <input type="submit" className="fadeIn fourth" value="Ingresar" onClick={this.manejadorBoton}/>
                     </form>

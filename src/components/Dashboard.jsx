@@ -18,7 +18,7 @@ class Dashboard extends React.Component{
     }
 
     componentDidMount(){
-        let url = apiurl + "pacientes?page=1";
+        let url = apiurl + "/auth/register";
         axios.get(url)
         .then(response=> {
             this.setState({
@@ -36,11 +36,11 @@ class Dashboard extends React.Component{
                       <table className="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">PACIENTE ID</th>
-                                <th scope="col">NOMBRE</th>
-                                <th scope="col">DNI</th>
-                                <th scope="col">CELULAR</th>
-                                <th scope="col">E-Mail</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">NOMBRES</th>
+                                <th scope="col">APELLIDOS</th>
+                                <th scope="col">PROYECTO</th>
+                                <th scope="col">HORAS</th>
                             </tr>
                         </thead>
                         <tbody>

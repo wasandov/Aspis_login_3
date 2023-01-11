@@ -4,13 +4,15 @@ import logo from '../assetss/img/logo.JPG';
 import {apiurl} from '../services/apirest.js';
 import axios from "axios";
 
+
+
 //Heredar la clase components
 class Nuevo extends React.Component{
 
-    componentDidMount(){
-        const urlpruebas="https://api.solodata.es";
-        let PacienteId=this.props.match.params.id;
-        let url = urlpruebas + "/pacientes?id=" + PacienteId;             //Ruta donde se van a alterar los datos
+    /*componentDidMount(){
+        
+        let Usuario=this.props.match.params.id;
+        let url = urlpruebas + "/auth/register";             //Ruta donde se van a alterar los datos
         axios.get(url)
         .then(response =>{
             this.setState({
@@ -30,7 +32,9 @@ class Nuevo extends React.Component{
             console.log(response)
         });
         
-    }
+    }*/
+
+    
 
     render(){
         return(
@@ -78,7 +82,7 @@ class Nuevo extends React.Component{
                                                 </div>
                                             </div>
                                             <br></br>
-                                            <input type="submit" value="Registrarse..." className="btn btn-info btn-block"/>
+                                            <input type="submit" value="Registrarse..." className="btn btn-info btn-block" />
                                             <br></br>
                                         </form>
                                     </div>
