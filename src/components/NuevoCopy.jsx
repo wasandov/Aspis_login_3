@@ -5,10 +5,6 @@ import axios from "axios";
 import "../assetss/css/Nuevo_copy.css";
 
 class NuevoCopy extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     form: {
       email: "",
@@ -50,19 +46,21 @@ class NuevoCopy extends React.Component {
       })
       .catch((error) => {
         console.log("error de catch");
-        console.log(error);
-        this.setState({
+        console.log(error.response);
+        /*this.setState({
           error: "2",
           errorMsg: error.response.data.message,
-        });
+        });*/
+        console.log("error de catch antes del if");
 
-        /*if (error.AxiosError.response.data.statusCode === 409) {
+        if (error.response.status === 409) {
           console.log("error de catch dentro del if");
           this.setState({
             error: "2",
             errorMsg: "El email ya se habia registrado",
           });
-        }*/
+        }
+        console.log("error de catch despues del if");
       });
   };
 
@@ -78,7 +76,7 @@ class NuevoCopy extends React.Component {
             alt="Icono Aspis"
           />
           <form onSubmit={this.manejadorSubmit}>
-            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-12">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div className="form-group">
                 <input
                   type="email"
@@ -90,7 +88,7 @@ class NuevoCopy extends React.Component {
                 />
               </div>
             </div>
-            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-12">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div className="form-group">
                 <input
                   type="password"
